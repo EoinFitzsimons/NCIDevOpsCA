@@ -37,6 +37,11 @@ jobs:
           name: Test SSH connectivity
           command: ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "echo ok"
       - run:
+          name: Install rsync and ssh client
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y rsync openssh-client
+      - run:
           name: Sync files to EC2
           command: |
             rsync -az --delete --exclude '.git' ./ ${SSH_USER}@${SSH_HOST}:~/app
