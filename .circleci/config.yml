@@ -43,13 +43,7 @@ jobs:
       - run:
           name: Remote deploy commands (npm + pm2)
           command: |
-            ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} <<'SSH_CMDS'
-              cd ~/app || exit 1
-              npm ci --production
-              pm2 stop example_app || true
-              pm2 start ./bin/www --name example_app --env production
-              pm2 save
-            SSH_CMDS
+            ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "cd ~/app || exit 1 && npm ci --production && pm2 stop example_app || true && pm2 start ./bin/www --name example_app --env production && pm2 save"
 
 workflows:
   build_and_deploy:
