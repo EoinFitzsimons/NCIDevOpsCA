@@ -1,1 +1,4 @@
-~$vOpsSec CA Brief 2026.docx
+node_modules/
+privatekey.pem
+server.crt
+.env
