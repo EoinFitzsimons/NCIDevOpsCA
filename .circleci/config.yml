@@ -30,13 +30,13 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-        - add_ssh_keys:
+      - add_ssh_keys:
           fingerprints:
-          - "SHA256:Lza93E8Bh7CMyYEht0Yn643rIyrGrprBF5Kir7tyHvg"
-        - run:
+            - "SHA256:Lza93E8Bh7CMyYEht0Yn643rIyrGrprBF5Kir7tyHvg"
+      - run:
           name: Test SSH connectivity
           command: ssh -o StrictHostKeyChecking=no ${SSH_USER}@${SSH_HOST} "echo ok"
-        - run:
+      - run:
           name: SSH debug (verbose, non-interactive)
           command: ssh -vvv -o BatchMode=yes -o StrictHostKeyChecking=no -o ConnectTimeout=10 ${SSH_USER}@${SSH_HOST} "echo ok"
       - run:
